@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+   >
+
+    <EditText
+        android:id="@+id/et_second_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_marginTop"
+        android:textSize="@dimen/main_textSize" />
+
+    <EditText
+        android:id="@+id/et_second_surname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_second_name"
+        android:layout_marginTop="@dimen/main_marginTop"
+        android:textSize="@dimen/main_textSize" />
+
+    <EditText
+        android:id="@+id/et_second_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_second_surname"
+        android:layout_marginTop="@dimen/main_marginTop"
+        android:textSize="@dimen/main_textSize" />
+
+    <Button
+        android:id="@+id/btn_second_responce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_second_phone"
+        android:layout_marginTop="@dimen/main_marginTop"
+        android:text="Response" />
+
+    <com.google.android.gms.maps.MapView xmlns:map="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        map:zOrderOnTop="true"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

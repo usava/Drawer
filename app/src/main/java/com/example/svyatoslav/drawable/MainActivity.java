@@ -19,10 +19,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.places.Place;
@@ -38,6 +44,8 @@ public class MainActivity extends AppCompatActivity
     private Uri picUri;
     private TextView Name, Surname, Phone, nbName, nbPhone;
     private static String Longitude, Latitude;
+    private LoginButton facebookLoginBtn;
+    CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +58,28 @@ public class MainActivity extends AppCompatActivity
         Name = (TextView) findViewById(R.id.tv_main_name);
         Surname = (TextView) findViewById(R.id.tv_main_surname);
         Phone = (TextView) findViewById(R.id.tv_main_phone);
+
+        callbackManager = CallbackManager.Factory.create();
+        facebookLoginBtn = (LoginButton) findViewById(R.id.btn_main_loginButton);
+        facebookLoginBtn.setReadPermissions("email");
+
+        // Callback registration
+        facebookLoginBtn.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+            }
+        });
 
         //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -197,6 +227,8 @@ public class MainActivity extends AppCompatActivity
         if(requestCode == Config.REQUEST_PLACES){
             getPlaceData(data);
         }
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        Log.d("Facebook", data.toString());
     }
 
     private void performCrop(){
